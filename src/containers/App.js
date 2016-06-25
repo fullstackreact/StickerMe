@@ -1,38 +1,106 @@
-import React, { Component } from 'react';
+import React, { Children } from 'react';
+import {connect} from 'react-redux'
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  NavigationExperimental
 } from 'react-native';
 
-import { Provider } from 'react-redux';
-import {configureStore} from '../redux/configureStore';
+const {
+	Transitioner: NavigationTransitioner,
+	Card: NavigationCard,
+	Header: NavigationHeader,
+} = NavigationExperimental
 
-console.log('configureStore ->', configureStore);
-const {store, actions} = configureStore({})
+import WelcomeScreen from '../components/Welcome'
+import Signup from '../components/Signup'
 
-export class StickerMe extends Component {
+export class StickerMe extends React.Component {
   componentDidMount() {
+    const {actions} = this.props;
     actions.currentUser.init();
   }
-  render() {
-    return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <Text style={styles.welcome}>
-            Welcome to React Native!
-          </Text>
-        </View>
-      </Provider>
-    );
+
+  onNavigate({type}) {
+    const {actions} = this.props;
+    if (type && (
+      type === 'BackAction' ||
+      type === NavigationCard.CardStackPanResponder.Actions.BACK.type)
+    ) {
+      actions.navigation.pop();
+    } else {
+      actions.navigation.push(action)
+    }
   }
+
+  render() {
+		let { navigationState } = this.props
+
+		return (
+			<NavigationTransitioner
+				navigationState={navigationState}
+				style={styles.container}
+				onNavigate={this.onNavigate.bind(this)}
+				renderOverlay={props => {
+          const {route} = props.scene;
+          if (route.title) {
+            return (
+    					<NavigationHeader
+    						{...props}
+    						renderTitleComponent={props => {
+    							const title = props.scene.route.title;
+                  if (title) {
+					         return (
+                     <NavigationHeader.Title>{title}</NavigationHeader.Title>
+                   )
+                 }
+    						}}
+              />
+          )}
+        }}
+				renderScene={props => {
+          const {modal} = props.scene.route;
+          return (
+  					<NavigationCard
+  						{...props}
+  						style={modal ?
+  									NavigationCard.CardStackStyleInterpolator.forVertical(props) :
+  									undefined
+  						}
+  						panHandlers={modal ? null : undefined }
+  						renderScene={this._renderScene.bind(this)}
+  						key={props.scene.route.key}
+  					/>
+  				)
+        }}
+			/>
+		)
+	}
+
+	_renderScene({scene}) {
+		const { route } = scene;
+    const {key} = route;
+    const {actions} = this.props;
+
+    const createElement = (Component) => {
+      return React.cloneElement(Component, {
+        actions: actions
+      })
+    }
+    if (key === 'welcome') return createElement(<WelcomeScreen />)
+    if (key === 'signup') return createElement(<Signup />)
+    return (
+      <View>
+        <Text>Test in _renderScene</Text>
+      </View>
+    )
+	}
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -47,5 +115,9 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export default StickerMe
+export default connect(state => {
+  return {
+    currentUser: state.currentUser,
+    navigationState: state.navigation
+  }
+})(StickerMe);

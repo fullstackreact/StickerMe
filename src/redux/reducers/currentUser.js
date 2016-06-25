@@ -1,23 +1,24 @@
 import {createConstants, createReducer} from 'redux-module-builder'
-import Firestack from 'react-native-firestack'
 
-export const server = new Firestack();
-server.configure()
-
-export const types = createConstants('USERS')(
+export const types = createConstants('currentUser')(
+  'INITIALIZED',
   'SIGNED_IN',
   'SIGNED_OUT'
 )
 
 export const actions = {
   init: () => (dispatch, getState) => {
-    server.listenForAuth((evt) => {
-      if (!evt.authenticated) {
-        dispatch(actions.userSignedOut(evt.error));
-      } else {
-        dispatch(actions.userSignedIn(evt.user))
-      }
-    })
+    const {server} = getState();
+    server.configure()
+      .then(() => {
+        server.listenForAuth((evt) => {
+          if (!evt.authenticated) {
+            dispatch(actions.userSignedOut(evt.error));
+          } else {
+            dispatch(actions.userSignedIn(evt.user))
+          }
+        })
+    });
   },
   userSignedIn: (user) => ({type: types.SIGNED_IN, payload: user}),
   userSignedOut: (err) => ({type: types.SIGNED_OUT, payload: err})
