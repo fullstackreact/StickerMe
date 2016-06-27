@@ -42,23 +42,7 @@ export class StickerMe extends React.Component {
 				navigationState={navigationState}
 				style={styles.container}
 				onNavigate={this.onNavigate.bind(this)}
-				renderOverlay={props => {
-          const {route} = props.scene;
-          if (route.title) {
-            return (
-    					<NavigationHeader
-    						{...props}
-    						renderTitleComponent={props => {
-    							const title = props.scene.route.title;
-                  if (title) {
-					         return (
-                     <NavigationHeader.Title>{title}</NavigationHeader.Title>
-                   )
-                 }
-    						}}
-              />
-          )}
-        }}
+				renderOverlay={this._renderOverlay.bind(this)}
 				renderScene={props => {
           const {modal} = props.scene.route;
           return (
@@ -77,6 +61,35 @@ export class StickerMe extends React.Component {
 			/>
 		)
 	}
+
+  _renderOverlay(props) {
+    const {actions} = this.props;
+    const {route} = props.scene;
+    if (!route.noHeader) {
+      route.actions = actions;
+      const {headerStyle} = route;
+      let headerProps = Object.assign({}, props, {
+        route,
+        style: headerStyle || {}
+      });
+
+      const {title, titleComponent} = route;
+      if (title && title != false) {
+        headerProps.renderTitleComponent = (props) => {
+          return titleComponent ?
+                  titleComponent(props) : (<NavigationHeader.Title>{title}</NavigationHeader.Title>);
+        }
+      }
+
+      const {leftComponent, rightComponent} = route;
+      headerProps.renderLeftComponent = leftComponent ?
+          leftComponent : () => (<View />)
+      headerProps.renderRightComponent = rightComponent ?
+          rightComponent : () => (<View />)
+
+      return (<NavigationHeader {...headerProps} />)
+    }
+  }
 
 	_renderScene({scene}) {
 		const { route } = scene;

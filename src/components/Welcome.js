@@ -6,6 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+import Divider from '../components/Divider';
 import AppIntro from 'react-native-app-intro';
 
 export class Welcome extends React.Component {
@@ -15,7 +16,7 @@ export class Welcome extends React.Component {
 
   onSignup() {
     const {navigation} = this.props.actions;
-    navigation.push({key: 'signup', modal: true, title: 'Signup'})
+    navigation.push('signup')
   }
 
   render() {
@@ -41,14 +42,22 @@ export class Welcome extends React.Component {
                 <Text style={styles.heading}>
                   Welcome screen
                 </Text>
+              </View><View level={4}>
+                <Text style={styles.heading}>
+                  Some image
+                </Text>
               </View>
             </View>
             <View style={[styles.slide]}>
-            <View>
-              <Text style={styles.heading}>
-                Welcome screen
-              </Text>
-            </View>
+              <View>
+                <Text style={styles.heading}>
+                  Welcome screen
+                </Text>
+              </View><View level={4}>
+                <Text style={styles.heading}>
+                  Some image
+                </Text>
+              </View>
             </View>
           </AppIntro>
         </View>
@@ -60,11 +69,12 @@ export class Welcome extends React.Component {
               Sign up
             </Text>
         </TouchableOpacity>
+        <Divider color={'#bbb'} />
         <TouchableOpacity
           onPress={this.onLogin.bind(this)}
           style={styles.button}>
             <Text style={styles.btnText}>
-              Sign up
+              Login
             </Text>
         </TouchableOpacity>
       </View>
@@ -87,8 +97,9 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     height: 80,
-    backgroundColor: '#bbc',
-    margin: 10,
+    backgroundColor: '#ff66bb',
+    marginLeft: 0,
+    marginRight: 0,
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center'

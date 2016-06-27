@@ -1,6 +1,8 @@
 import {createConstants, createReducer} from 'redux-module-builder'
 import * as NavUtils from 'NavigationStateUtils'
 
+import routes from '../../routes'
+
 export const types = createConstants('navigation')(
   'INIT',
   'PUSH',
@@ -12,8 +14,8 @@ export const types = createConstants('navigation')(
 
 export const actions = {
   init: firstRoute => dispatch => dispatch({type: types.INIT, payload: firstRoute}),
-  push: route => {
-    route = typeof route === 'string' ? { key: route, title: route } : route;
+  push: routeKey => {
+    route = Object.assign({}, {key: routeKey}, routes[routeKey])
     return {
       type: types.PUSH,
       route
@@ -56,7 +58,6 @@ export const reducer = createReducer({
 export const initialState = {
   index: 0,
   ready: false,
-  routes: [{
-    key: 'welcome', title: false
-  }]
+  // routes: [routes['welcome']]
+  routes: [routes['signup']]
 }

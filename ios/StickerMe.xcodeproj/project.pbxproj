@@ -113,6 +113,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = Firestack;
 		};
+		D92691D81D1E20BC00DD62F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9FB8A8FF61E4CE9B2B84354 /* OAuthManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = OAuthManager;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -335,6 +342,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D92691D41D1E20BC00DD62F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D92691D91D1E20BC00DD62F8 /* libOAuthManager.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -404,6 +419,10 @@
 				{
 					ProductGroup = D90286AE1D1D1F4C006B2E5B /* Products */;
 					ProjectRef = 9CFDC75EA3F242DA9523AEBA /* Firestack.xcodeproj */;
+				},
+				{
+					ProductGroup = D92691D41D1E20BC00DD62F8 /* Products */;
+					ProjectRef = E9FB8A8FF61E4CE9B2B84354 /* OAuthManager.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -530,6 +549,13 @@
 			fileType = archive.ar;
 			path = libFirestack.a;
 			remoteRef = D90286B11D1D1F4C006B2E5B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D92691D91D1E20BC00DD62F8 /* libOAuthManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOAuthManager.a;
+			remoteRef = D92691D81D1E20BC00DD62F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -662,6 +688,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
 				);
 				INFOPLIST_FILE = StickerMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -683,6 +710,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS/**",
 				);
 				INFOPLIST_FILE = StickerMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

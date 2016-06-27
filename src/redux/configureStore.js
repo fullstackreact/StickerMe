@@ -1,10 +1,13 @@
 import Firestack from 'react-native-firestack'
+import OAuthManager from 'react-native-oauth'
+
 import { bindActionCreatorsToStore } from 'redux-module-builder';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { rootReducer, actions, initialState } from './rootReducer';
 
 const server = new Firestack({});
+const authManager = new OAuthManager();
 
 export const configureStore = () => {
     let middleware = [
@@ -25,7 +28,7 @@ export const configureStore = () => {
 
     const finalInitialState = Object.assign({},
         initialState,
-        {server}
+        {server, authManager}
       );
 
     const store = finalCreateStore(

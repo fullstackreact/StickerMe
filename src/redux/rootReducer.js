@@ -10,6 +10,7 @@ export let actions = {
 
 export let reducers = {
   'server': (state) => state || null, // filled in later
+  'authManager': (state) => state || null,
   currentUser: currentUser.reducer,
   navigation: navigation.reducer
 }
