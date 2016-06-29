@@ -32,7 +32,6 @@ export class Button extends React.Component {
   }
 
   onPress(evt) {
-    console.log('pressed button', evt);
     if (this.props.onPress) {
       this.props.onPress(evt);
     }

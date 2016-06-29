@@ -13,6 +13,8 @@ const {
 	Header: NavigationHeader,
 } = NavigationExperimental
 
+import Public from '../views/public'
+import Home from '../views/home'
 import WelcomeScreen from '../components/Welcome'
 import Signup from '../components/Signup'
 
@@ -35,7 +37,7 @@ export class StickerMe extends React.Component {
   }
 
   render() {
-		let { navigationState } = this.props
+		let {navigationState} = this.props
 
 		return (
 			<NavigationTransitioner
@@ -48,13 +50,14 @@ export class StickerMe extends React.Component {
           return (
   					<NavigationCard
   						{...props}
+              currentUser={this.props.currentUser}
   						style={modal ?
   									NavigationCard.CardStackStyleInterpolator.forVertical(props) :
   									undefined
   						}
   						panHandlers={modal ? null : undefined }
   						renderScene={this._renderScene.bind(this)}
-  						key={props.scene.route.key}
+  						key={props.scene.route.key + !!this.props.currentUser}
   					/>
   				)
         }}
@@ -92,17 +95,24 @@ export class StickerMe extends React.Component {
   }
 
 	_renderScene({scene}) {
-		const { route } = scene;
-    const {key} = route;
-    const {actions} = this.props;
+		const {route} = scene;
+    const {keyPrefix} = route;
+    const {actions, currentUser} = this.props;
 
     const createElement = (Component) => {
       return React.cloneElement(Component, {
-        actions: actions
+        actions: actions,
+        route,
+        currentUser
       })
     }
-    if (key === 'welcome') return createElement(<WelcomeScreen />)
-    if (key === 'signup') return createElement(<Signup />)
+
+    console.log('currentUser -->', currentUser);
+    if (!!currentUser) {
+      return createElement(<Home />)
+    }
+    if (keyPrefix[0] === 'public') return createElement(<Public />)
+    // if (key === 'signup') return createElement(<Signup />)
     return (
       <View>
         <Text>Test in _renderScene</Text>
@@ -130,7 +140,7 @@ const styles = StyleSheet.create({
 
 export default connect(state => {
   return {
-    currentUser: state.currentUser,
+    currentUser: state.currentUser.user,
     navigationState: state.navigation
   }
 })(StickerMe);

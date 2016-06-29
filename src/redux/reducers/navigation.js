@@ -58,6 +58,6 @@ export const reducer = createReducer({
 export const initialState = {
   index: 0,
   ready: false,
-  // routes: [routes['welcome']]
-  routes: [routes['signup']]
+  routes: [routes['public']]
+  // routes: [routes['signup']]
 }

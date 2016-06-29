@@ -7,24 +7,29 @@ export const types = createConstants('currentUser')(
 )
 
 export const actions = {
-  init: () => (dispatch, getState) => {
+  init: (cfg) => (dispatch, getState) => {
     const {server, authManager} = getState();
-    server.configure()
-      .then(() => {
-        server.listenForAuth((evt) => {
-          if (!evt.authenticated) {
-            dispatch(actions.userSignedOut(evt.error));
-          } else {
-            dispatch(actions.userSignedIn(evt.user))
-          }
-        })
-    })
-    .then(() => {
+
+    const intitialize = () => {
+      server.listenForAuth((evt) => {
+        if (!evt.authenticated) {
+          dispatch(actions.userSignedOut(evt.error));
+        } else {
+          dispatch(actions.userSignedIn(evt.user))
+        }
+      })
+
       authManager.configureProvider("twitter", {
         consumer_key: 'EFSw5Wx703eTjzAKCMwMdp0Vf',
         consumer_secret: 'RPm1CMAjHDrMaYodmr1jP2AYXCCEl4on03bqmQP0Udm809f3Sg'
       })
-    })
+    }
+  // Regardless of the success/failure, initialize the app
+    server.configure(cfg)
+      .then(intitialize)
+      .catch(intitialize)
+
+    server.on('debug', (msg) => console.log('DEBUG:', msg));
   },
   userSignedIn: (user) => ({type: types.SIGNED_IN, payload: user}),
   userSignedOut: (err) => ({type: types.SIGNED_OUT, payload: err}),
@@ -57,10 +62,12 @@ export const actions = {
 export const reducer = createReducer({
   [types.SIGNED_IN]: (state, {payload}) => ({
     ...state,
+    loggedIn: true,
     user: payload
   }),
   [types.SIGNED_OUT]: (state, {payload}) => ({
     ...state,
+    loggedIn: false,
     user: null
   })
 });

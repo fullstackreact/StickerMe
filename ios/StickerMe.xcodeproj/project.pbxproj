@@ -24,7 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AD604957ED254B62A964AC92 /* libOAuthManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1992150E803F4EE7B6EF63D0 /* libOAuthManager.a */; };
-		D90286BE1D1DDBAE006B2E5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D90286BD1D1DDBAE006B2E5B /* GoogleService-Info.plist */; };
+		D92691F21D21BE9600DD62F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D90286BD1D1DDBAE006B2E5B /* GoogleService-Info.plist */; };
 		FB7A55DE0F2E4D0DA897CFE9 /* libFirestack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF14B5705BAC4485A6F1F507 /* libFirestack.a */; };
 /* End PBXBuildFile section */
 
@@ -574,7 +574,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				D90286BE1D1DDBAE006B2E5B /* GoogleService-Info.plist in Resources */,
+				D92691F21D21BE9600DD62F8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +696,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.fullstack.StickerMe;
 				PRODUCT_NAME = StickerMe;
 			};
 			name = Debug;
@@ -718,6 +719,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.fullstack.StickerMe;
 				PRODUCT_NAME = StickerMe;
 			};
 			name = Release;

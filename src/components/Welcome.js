@@ -16,7 +16,7 @@ export class Welcome extends React.Component {
 
   onSignup() {
     const {navigation} = this.props.actions;
-    navigation.push('signup')
+    navigation.push('public.signup')
   }
 
   render() {
