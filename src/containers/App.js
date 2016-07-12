@@ -18,6 +18,8 @@ import Home from '../views/home'
 import WelcomeScreen from '../components/Welcome'
 import Signup from '../components/Signup'
 
+const hasHeader = (route) => !route.noHeader
+
 export class StickerMe extends React.Component {
   componentDidMount() {
     const {actions} = this.props;
@@ -98,24 +100,37 @@ export class StickerMe extends React.Component {
 		const {route} = scene;
     const {keyPrefix} = route;
     const {actions, currentUser} = this.props;
+    const {noHeader} = route;
 
     const createElement = (Component) => {
       return React.cloneElement(Component, {
         actions: actions,
         route,
-        currentUser
+        currentUser,
+        style: { flex: 1 }
       })
     }
 
-    console.log('currentUser -->', currentUser);
-    if (!!currentUser) {
-      return createElement(<Home />)
+    let Component;
+
+    if (route.Component) {
+      Component = route.Component;
+      if (typeof Component === 'function') {
+        Component = Component(route)
+      }
+    } else if (!!currentUser) {
+      Component = <Home />
+    } else if (keyPrefix[0] === 'public') {
+      Component = <Public />
+    } else {
+      Component = <View>
+        <Text>Scene not yet implemented</Text>
+      </View>
     }
-    if (keyPrefix[0] === 'public') return createElement(<Public />)
-    // if (key === 'signup') return createElement(<Signup />)
+
     return (
-      <View>
-        <Text>Test in _renderScene</Text>
+      <View style={[styles.scene, !noHeader && styles.sceneWithHeader]}>
+        {createElement(Component)}
       </View>
     )
 	}
@@ -124,18 +139,19 @@ export class StickerMe extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+  },
+  scene: {
+    flex: 1,
+  },
+  sceneWithHeader: {
+    paddingTop: 65,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
 
 export default connect(state => {

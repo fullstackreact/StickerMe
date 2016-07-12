@@ -22,8 +22,8 @@ export const actions = {
     }
   },
   pop: () => ({type: types.POP}),
-  jump_to_key: (key) => ({type: types.JUMP_TO_KEY, key}),
-  jump_to_index: (index) => ({type: types.JUMP_TO_INDEX, index}),
+  jumpToKey: (key) => ({type: types.JUMP_TO_KEY, key}),
+  jumpToIndex: (index) => ({type: types.JUMP_TO_INDEX, index}),
   reset: (routes, index) => ({type: types.RESET, index, routes})
 }
 
@@ -58,6 +58,6 @@ export const reducer = createReducer({
 export const initialState = {
   index: 0,
   ready: false,
-  routes: [routes['public']]
+  routes: [routes['welcome']]
   // routes: [routes['signup']]
 }

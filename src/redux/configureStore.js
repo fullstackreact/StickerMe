@@ -6,7 +6,17 @@ import thunkMiddleware from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { rootReducer, actions, initialState } from './rootReducer';
 
-const server = new Firestack({});
+// TODO: Move this
+const server = new Firestack({
+  apiKey: "AIzaSyCQauaFT9AoP7cMuA8KC7RwzhylJWy2xkM",
+  authDomain: "stickerme-18038.firebaseapp.com",
+  databaseURL: "https://stickerme-18038.firebaseio.com",
+  storageBucket: "stickerme-18038.appspot.com",
+});
+
+server.getCurrentUser()
+  .then(u => console.log('getCurrentUser returned', u));
+  
 const authManager = new OAuthManager();
 
 export const configureStore = () => {

@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var FirebaseServer = require('firebase-server');
+
+new FirebaseServer(5000, '127.0.0.1', {
+    states: {
+        CA: 'California',
+        AL: 'Alabama',
+        KY: 'Kentucky'
+    }
+});

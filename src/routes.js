@@ -1,7 +1,9 @@
 import React from 'react'
 import {
-  View, Text
+  View, Text, TouchableHighlight
 } from 'react-native'
+
+import Icon from 'react-native-vector-icons/FontAwesome'
 import Close from './components/Close'
 
 const toList = (root) => {
@@ -31,10 +33,42 @@ const toList = (root) => {
 }
 export const routes = toList({
   'welcome': {
-    route: {noHeader: true}
+    route: {
+      title: 'Home',
+      rightComponent: function (props) {
+        const {scene} = props;
+        const takePicture = () => {
+          const {actions} = props.scene.route;
+          const {navigation} = actions;
+          navigation.push('camera.take');
+        }
+        return (
+          <View style={{padding: 10}}>
+            <TouchableHighlight onPress={takePicture}>
+              <Icon name="camera" size={20} />
+            </TouchableHighlight>
+          </View>
+        )
+      }
+    }
+  },
+  'camera': {
+    route: {noHeader: true},
+    children: {
+      'take': {
+        route: {
+          noHeader: true,
+          modal: true,
+          Component: () => {
+            const C = require('./views/camera/takePicture').default;
+            return <C />
+          }
+        }
+      }
+    }
   },
   'public': {
-    route: {noHeader: true},
+    route: {},
     children: {
       'signup': {
         route: {

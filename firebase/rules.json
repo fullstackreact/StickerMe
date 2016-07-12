@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "users": {
+      "$userId": {
+        ".validate": "newData.hasChildren(['name'])",
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        }
+      }
+    },
+    "user-photos": {
+      "$userId": {
+        "$photoId": {
+          ".write": "auth != null && auth.uid == $userId"
+        },
+        ".read": "auth != null && auth.uid == $userId"
+      }
+    },
+    "global-photos": {
+      "$photoId": {
+        ".write": "auth != null"
+      },
+      ".read": "true"
+    }
+  }
+}
