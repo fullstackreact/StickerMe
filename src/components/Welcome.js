@@ -11,7 +11,6 @@ import AppIntro from 'react-native-app-intro';
 
 export class Welcome extends React.Component {
   onLogin() {
-    console.log('onLogin called');
   }
 
   onSignup() {

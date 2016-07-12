@@ -4,13 +4,15 @@ import {
   View,
   Text,
   Image,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native'
 
 export class PhotoCard extends React.Component {
   static propTypes = {
     photo: T.object,
-    actions: T.object
+    actions: T.object,
+    onPress: T.func
   }
 
   componentDidMount() {
@@ -18,13 +20,20 @@ export class PhotoCard extends React.Component {
     actions.photos.downloadPhoto(photo)
   }
 
+  onPress(evt) {
+    this.props.onPress(this.props.photo)
+  }
+
   render() {
     const {photo} = this.props;
 
     return (
       <View style={styles.container}>
-        {photo.url && <Image source={{uri: photo.url}}
-               style={[styles.base, {overflow: 'hidden'}]} />}
+        <TouchableHighlight onPress={this.onPress.bind(this)}>
+          {photo.url ? <Image source={{uri: photo.url}}
+               style={[styles.base, {overflow: 'hidden'}]} /> :
+             <Text>Loading...</Text>}
+        </TouchableHighlight>
       </View>
     )
   }

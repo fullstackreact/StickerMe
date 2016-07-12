@@ -5,6 +5,8 @@ import { bindActionCreatorsToStore } from 'redux-module-builder';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { rootReducer, actions, initialState } from './rootReducer';
+import {persistStore, autoRehydrate} from 'redux-persist'
+import {AsyncStorage} from 'react-native'
 
 // TODO: Move this
 const server = new Firestack({
@@ -16,7 +18,7 @@ const server = new Firestack({
 
 server.getCurrentUser()
   .then(u => console.log('getCurrentUser returned', u));
-  
+
 const authManager = new OAuthManager();
 
 export const configureStore = () => {
@@ -29,6 +31,8 @@ export const configureStore = () => {
       const devTools = require('remote-redux-devtools');
       tools.push(devTools());
     }
+
+    tools.push(autoRehydrate())
 
     let finalCreateStore;
     finalCreateStore = compose(
@@ -45,6 +49,8 @@ export const configureStore = () => {
       rootReducer,
       finalInitialState
     );
+
+    persistStore(store, {storage: AsyncStorage, blacklist: ['photos']})
 
     if (module.hot) {
       module.hot.accept('./rootReducer', () => {

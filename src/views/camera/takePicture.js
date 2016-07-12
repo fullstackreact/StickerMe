@@ -13,10 +13,6 @@ import Camera from 'react-native-camera'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 export class TakeAPhoto extends React.Component {
-  componentDidMount() {
-    console.log('TakeAPhoto() props', this.props);
-    // this.takePicture();
-  }
   render() {
     return (
       <View style={styles.container}>

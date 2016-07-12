@@ -70,6 +70,7 @@ export class StickerMe extends React.Component {
   _renderOverlay(props) {
     const {actions} = this.props;
     const {route} = props.scene;
+
     if (!route.noHeader) {
       route.actions = actions;
       const {headerStyle} = route;

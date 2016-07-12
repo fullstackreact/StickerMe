@@ -20,6 +20,10 @@ export class HomeView extends React.Component {
     actions.feed.unlisten();
   }
 
+  onPhotoClick() {
+    console.log('clicked photo');
+  }
+
   render() {
     const {actions, photos} = this.props;
 
@@ -27,7 +31,9 @@ export class HomeView extends React.Component {
       <View style={styles.container}>
         { photos.items.length === 0 ?
             <NoMedia actions={actions} /> :
-            <PhotoFeed actions={actions} photos={photos.items} />
+            <PhotoFeed onPress={this.onPhotoClick.bind(this)}
+                      actions={actions}
+                      photos={photos.items} />
         }
       </View>
     )

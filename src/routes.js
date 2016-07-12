@@ -31,17 +31,20 @@ const toList = (root) => {
   Object.keys(root).map(key => visitRoute(key, root[key], routes));
   return routes;
 }
+
+const withNavigation = (props, fn) => (evt) => {
+  const {actions} = props.scene.route;
+  const {navigation} = actions;
+  fn(navigation)
+}
+
 export const routes = toList({
   'welcome': {
     route: {
       title: 'Home',
       rightComponent: function (props) {
         const {scene} = props;
-        const takePicture = () => {
-          const {actions} = props.scene.route;
-          const {navigation} = actions;
-          navigation.push('camera.take');
-        }
+        const takePicture = withNavigation(nav => nav.push('camera.take'))
         return (
           <View style={{padding: 10}}>
             <TouchableHighlight onPress={takePicture}>
@@ -49,6 +52,21 @@ export const routes = toList({
             </TouchableHighlight>
           </View>
         )
+      }
+    },
+    children: {
+      'photo': {
+        route: {
+          title: 'Photo',
+          rightComponent: (props) => {
+            const onClose = withNavigation(props, nav => nav.pop())
+            return (<Close onPress={onClose}/>)
+          },
+          Component: () => {
+            const C = require('./views/photo').default;
+            return <C />
+          }
+        }
       }
     }
   },
@@ -80,11 +98,7 @@ export const routes = toList({
           },
           leftComponent: null,
           rightComponent: (props) => {
-            const onClose = () => {
-              const {actions} = props.scene.route;
-              const {navigation} = actions;
-              navigation.pop();
-            }
+            const onClose = withNavigation(props, nav => nav.pop())
             return (<Close onPress={onClose}/>)
           }
         }

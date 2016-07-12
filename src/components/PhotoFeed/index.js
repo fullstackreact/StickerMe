@@ -34,8 +34,6 @@ export class PhotoFeed extends React.Component {
       let {data, sectionIds} = this._getListViewData(photos);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRowsAndSections(data, sectionIds)
-      }, () => {
-        console.log('setState on photos', this.props.photos);
       });
     // }
   }
@@ -102,8 +100,12 @@ export class PhotoFeed extends React.Component {
     return oldRow !== newRow;
   }
 
-  _pressRow(rowId) {
-    console.log('pressed row');
+  _pressRow(photo) {
+    console.log('pressed row', photo);
+    const {actions} = this.props;
+    const {navigation} = actions;
+
+    navigation.push('welcome.photo', {photo})
   }
 
   _renderRow(rowData) {

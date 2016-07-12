@@ -1,6 +1,8 @@
 import {createConstants, createReducer} from 'redux-module-builder'
 import * as NavUtils from 'NavigationStateUtils'
 
+import {REHYDRATE} from 'redux-persist/constants'
+
 import routes from '../../routes'
 
 export const types = createConstants('navigation')(
@@ -13,9 +15,9 @@ export const types = createConstants('navigation')(
 )
 
 export const actions = {
-  init: firstRoute => dispatch => dispatch({type: types.INIT, payload: firstRoute}),
-  push: routeKey => {
-    route = Object.assign({}, {key: routeKey}, routes[routeKey])
+  // init: firstRoute => dispatch => dispatch({type: types.INIT, payload: firstRoute}),
+  push: (routeKey, routeProps={}) => {
+    route = Object.assign({}, {routeProps, key: routeKey}, routes[routeKey])
     return {
       type: types.PUSH,
       route
@@ -28,6 +30,15 @@ export const actions = {
 }
 
 export const reducer = createReducer({
+  [REHYDRATE]: (state, {payload}) => {
+    const {navigation} = payload;
+    const {index} = navigation;
+    // return NavUtils.reset(state, [routes['welcome']]);
+    const newRoutes = navigation.routes
+      .map(route => Object.assign({}, routes[route.key], route))
+
+    return NavUtils.reset(state, newRoutes, index);
+  },
   [types.INIT]: (state, {payload}) => ({
     ...state,
     ready: true,
@@ -48,16 +59,13 @@ export const reducer = createReducer({
   [types.JUMP_TO_INDEX]: (state, {index}) => {
     return NavUtils.jumpToIndex(state, index);
   },
-  [types.RESET]: (state, {routes, index}) => ({
-    ...state,
-    index: index,
-    routes: routes
-  })
+  [types.RESET]: (state, {routes, index}) => {
+    return NavUtils.reset(state, routes, index);
+  }
 });
 
 export const initialState = {
   index: 0,
-  ready: false,
   routes: [routes['welcome']]
   // routes: [routes['signup']]
 }

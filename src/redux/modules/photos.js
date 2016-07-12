@@ -87,12 +87,9 @@ export const actions = {
       [`${makeUserListKey(currentUser)}/${newPhotoKey}`]: newPhoto
     }
 
-    console.log('updates ->', updates);
-
     const promises = Object.keys(updates)
       .map(key => {
         const res =  server.database.ref(key).set(updates[key])
-        console.log('res ->', key, res);
         return res;
       })
       Promise.all(promises).then(res => dispatch({
@@ -124,11 +121,9 @@ export const actions = {
     const {server} = getState();
 
     if (photo) {
-console.log('photo ->', photo);
       const storage = server.storage;
       storage.ref(photo.fullPath).getDownloadURL()
       .then(url => {
-console.log('photo url ------->', url);
         const photoRef = Object.assign({}, photo, { url: url})
         dispatch(({type: types.DOWNLOAD_COMPLETE, payload: photoRef}));
       }).catch(err => {
@@ -196,7 +191,6 @@ export const reducer = createReducer({
           idx = state.items.indexOf(currentItem);
     const items = state.items;
 
-    console.log('payload: ', idx, payload, state);
     items[idx] = payload;
     return {...state, items};
   }

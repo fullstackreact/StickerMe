@@ -11,7 +11,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 export class NoMedia extends React.Component {
   takePicture() {
-    console.log('take picture');
     const {actions} = this.props;
     actions.navigation.push('camera.take')
   }
