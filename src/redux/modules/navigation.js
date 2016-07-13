@@ -29,12 +29,15 @@ export const actions = {
   reset: (routes, index) => ({type: types.RESET, index, routes})
 }
 
+const initialRoutes = [routes['welcome']]
+
 export const reducer = createReducer({
   [REHYDRATE]: (state, {payload}) => {
     const {navigation} = payload;
-    const {index} = navigation;
+    const index = navigation ? navigation.index : 0;
     // return NavUtils.reset(state, [routes['welcome']]);
-    const newRoutes = navigation.routes
+    const navRoutes = navigation ? navigation.routes : initialRoutes;
+    const newRoutes = navRoutes
       .map(route => Object.assign({}, routes[route.key], route))
 
     return NavUtils.reset(state, newRoutes, index);
@@ -66,6 +69,6 @@ export const reducer = createReducer({
 
 export const initialState = {
   index: 0,
-  routes: [routes['welcome']]
+  routes: initialRoutes
   // routes: [routes['signup']]
 }

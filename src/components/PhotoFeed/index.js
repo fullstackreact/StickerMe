@@ -101,7 +101,6 @@ export class PhotoFeed extends React.Component {
   }
 
   _pressRow(photo) {
-    console.log('pressed row', photo);
     const {actions} = this.props;
     const {navigation} = actions;
 

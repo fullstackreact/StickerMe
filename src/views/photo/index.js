@@ -9,25 +9,20 @@ import {
   Animated,
 } from 'react-native'
 
+// replace with sticker component
 import Icon from 'react-native-vector-icons/FontAwesome'
-const size = 60
-const stickers = [
-  {
-    id: 1,
-    name: 'Flag',
-    Component: () => <Icon size={size} name="flag" />
-  },
-  {
-    id: 2,
-    name: 'Bolt',
-    Component: () => <Icon size={size} name="bolt" />
-  },
-  {
-    id: 3,
-    name: 'Thumbs up',
-    Component: () => <Icon size={size} name='thumbs-up' />
-  }
+const size = 50
+const stickerNames = [
+  'flag', 'bolt', 'thumbs-up', 'camera', 'beer', 'binoculars', 'building',
+  'bomb', 'circle', 'circle-o', 'dashboard', 'desktop', 'male', 'female',
+  'hand-paper-o', 'hand-scissors-o', 'lemon-o', 'leaf'
 ]
+const stickers = stickerNames.map((name, idx) => ({
+  id: idx,
+  name: name,
+  Component: () => <Icon size={size} name={name} />
+}))
+// end replace
 
 import StickerPicker, {Sticker} from '../../components/Stickers'
 
@@ -42,12 +37,24 @@ export class PhotoView extends React.Component {
     super(props);
 
     this.state = {
-      showDraggable: true,
+      canScrollStickers: true,
       dropZoneValues: null,
       pan: new Animated.ValueXY(),
 
-      stickers: []
+      placedStickers: {}
     }
+  }
+
+  draggingStickersStart() {
+    this.setState({
+      canScrollStickers: false
+    })
+  }
+
+  draggingStickersEnd() {
+    this.setState({
+      canScrollStickers: true
+    })
   }
 
   setDropZoneValues(event){      //Step 1
@@ -61,45 +68,71 @@ export class PhotoView extends React.Component {
     return gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height;
   }
 
+  renderSticker(sticker, otherProps={}) {
+    const {actions} = this.props;
+
+    return (
+      <Sticker
+        {...otherProps}
+        key={sticker.id}
+        sticker={sticker}
+        actions={actions}
+        isDropZone={this.isDropZone.bind(this)}
+        setLocation={this.setLocation.bind(this)}
+        onDrag={this.draggingStickersStart.bind(this)}
+        onDragEnd={this.draggingStickersEnd.bind(this)} />
+    )
+  }
+
   setLocation({nativeEvent}, sticker, pan, gesture) {
-    console.log('setLocation ->', Sticker);
+    console.log('setLocation ->', sticker);
 
     const newSticker = Object.assign({}, sticker, {
-      initialLocation: {x: nativeEvent.pageX, y: nativeEvent.pageY}
+      key: +new Date(),
+      initialLocation: {x: +nativeEvent.pageX, y: +nativeEvent.pageY}
     })
+    console.log('nativeEvent --->', newSticker);
 
-    console.log('nativeEvent --->', nativeEvent);
+    const {placedStickers} = this.state;
 
     this.setState({
-      stickers: this.state.stickers.concat(newSticker)
+      placedStickers: {
+        ...placedStickers,
+        [sticker.id]: newSticker
+      }
     })
   }
 
-/*
-  <Image
-    style={styles.imageContainer}
-    source={{uri: photo.url }} />*/
+/**/
   render() {
     const {actions} = this.props;
     const {routeProps} = this.props.route;
     const {photo} = routeProps;
+    const {placedStickers, canScrollStickers} = this.state;
+
+    const stickerList = [].concat(stickers)
 
     return (
       <View style={styles.container}>
         <View style={styles.image}
               onLayout={this.setDropZoneValues.bind(this)}>
-          {this.state.stickers.map(sticker => {
-            return <Sticker
-                    key={sticker.id}
-                    sticker={sticker} />
-          })}
+          {Object.keys(placedStickers)
+              .map(stickerKey => {
+                const sticker = placedStickers[stickerKey];
+                return this.renderSticker(sticker, {
+                  initialLocation: sticker.initialLocation
+                })
+            })
+          }
+          <Image
+            style={styles.imageContainer}
+            source={{uri: photo.url }} />
         </View>
         <View style={styles.picker}>
           <StickerPicker
-            isDropZone={this.isDropZone.bind(this)}
-            setLocation={this.setLocation.bind(this)}
-            stickers={stickers}
-            actions={actions} />
+            stickers={stickerList}
+            canScroll={canScrollStickers}
+            renderSticker={this.renderSticker.bind(this)} />
         </View>
       </View>
     )
@@ -115,13 +148,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    flex: 6
+    flex: 5,
+    zIndex: 1,
   },
   picker: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    zIndex: 2,
+  },
+  sticker: {
   }
 })
 

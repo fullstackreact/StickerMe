@@ -16,9 +16,6 @@ const server = new Firestack({
   storageBucket: "stickerme-18038.appspot.com",
 });
 
-server.getCurrentUser()
-  .then(u => console.log('getCurrentUser returned', u));
-
 const authManager = new OAuthManager();
 
 export const configureStore = () => {

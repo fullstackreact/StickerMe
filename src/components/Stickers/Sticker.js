@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    position: 'relative'
+    paddingVertical: 20,
+    zIndex: 2
   },
   imageContainer: {
     flex: 1,

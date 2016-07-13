@@ -12,47 +12,36 @@ import Sticker from './Sticker'
 
 export {Sticker} from './Sticker'
 
+const noop = (e) => e
 export class StickerPicker extends React.Component {
   static propTypes: {
-    photo: T.object
+    photo: T.object,
+    onDrag: T.func,
+    onDragEnd: T.func,
+    setLocation: T.func,
+    canScroll: T.func
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      scrollEnabled: true
-    }
-  }
-
-  _draggingStart() {
-    this.setState({scrollEnabled: false});
-  }
-
-  _draggingStopped() {
-    this.setState({scrollEnabled: true});
-  }
-
-  _setLocation(evt, sticker, pan, gesture) {
-    this.props.setLocation(evt, sticker, pan, gesture);
+  static defaultProps: {
+    onDrag: noop,
+    onDragEnd: noop,
+    setLocation: noop,
+    canScroll: () => true
   }
 
   render() {
-    const {stickers, isDropZone, setLocation} = this.props;
+    const {renderSticker, canScroll, stickers, isDropZone, onDrag, onDragEnd, setLocation} = this.props;
 
     return (
       <ScrollView style={styles.container}
-          scrollEnabled={this.state.scrollEnabled}
+          scrollEnabled={canScroll}
           horizontal={true}>
         {stickers.map(sticker => {
-          return <Sticker
-                    onDrag={this._draggingStart.bind(this)}
-                    onDragEnd={this._draggingStopped.bind(this)}
-                    isDropZone={isDropZone}
-                    setLocation={this._setLocation.bind(this)}
-                    style={styles.imageContainer}
-                    key={sticker.id}
-                    sticker={sticker} />
+          return React.cloneElement(renderSticker(sticker), {
+            key: sticker.id,
+            sticker: sticker,
+            style: [styles.imageContainer]
+          })
         })}
       </ScrollView>
     )
@@ -63,9 +52,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    borderTopWidth: 2,
   },
   imageContainer: {
     flex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderWidth: 10,
+    borderColor: 'blue',
   }
 })
 
