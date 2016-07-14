@@ -85,13 +85,10 @@ export class PhotoView extends React.Component {
   }
 
   setLocation({nativeEvent}, sticker, pan, gesture) {
-    console.log('setLocation ->', sticker);
-
     const newSticker = Object.assign({}, sticker, {
       key: +new Date(),
       initialLocation: {x: +nativeEvent.pageX, y: +nativeEvent.pageY}
     })
-    console.log('nativeEvent --->', newSticker);
 
     const {placedStickers} = this.state;
 
@@ -110,27 +107,33 @@ export class PhotoView extends React.Component {
     const {photo} = routeProps;
     const {placedStickers, canScrollStickers} = this.state;
 
-    const stickerList = [].concat(stickers)
-
     return (
       <View style={styles.container}>
-        <View style={styles.image}
-              onLayout={this.setDropZoneValues.bind(this)}>
+        <View style={styles.image}>
           {Object.keys(placedStickers)
               .map(stickerKey => {
                 const sticker = placedStickers[stickerKey];
-                return this.renderSticker(sticker, {
+                const StickerComponent = this.renderSticker(sticker, {
                   initialLocation: sticker.initialLocation
                 })
+                const StickerEle =
+                  React.createElement(StickerComponent, {
+                    key: stickerKey
+                  });
+
+                return (
+                  <View><StickerEle key={stickerKey} /></View>
+                )
             })
           }
           <Image
+            onLayout={this.setDropZoneValues.bind(this)}
             style={styles.imageContainer}
             source={{uri: photo.url }} />
         </View>
         <View style={styles.picker}>
           <StickerPicker
-            stickers={stickerList}
+            stickers={stickers}
             canScroll={canScrollStickers}
             renderSticker={this.renderSticker.bind(this)} />
         </View>
@@ -146,6 +149,11 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
   },
   image: {
     flex: 5,

@@ -30,6 +30,7 @@ export class Sticker extends React.Component {
 
     this.state = {
       pan: new Animated.ValueXY(),
+      scale: new Animated.Value(1),
       x: initialLocation.x,
       y: initialLocation.y,
     }
@@ -45,6 +46,8 @@ export class Sticker extends React.Component {
       onPanResponderStart: (e) => this.props.onDrag(e),
       onPanResponderEnd: (e) => this.props.onDragEnd(e),
       onPanResponderRelease        : (e, gesture) => {
+        this.state.pan.flattenOffset();
+
         if (isDropZone(gesture)) {
           setLocation(e, this.props.sticker, this.state.pan, {gesture})
         } else {
@@ -53,14 +56,25 @@ export class Sticker extends React.Component {
             {toValue: {x:0, y:0}}
           ).start()
         }
-      }
+      },
+      onPanResponderGrant: (e, gestureState) => {
+        // Set the initial value to the current state
+        this.state.pan.setOffset({x: this.state.pan.x._value, y: this.state.pan.y._value});
+        this.state.pan.setValue({x: 0, y: 0});
+      },
   });
 
   }
 
   render() {
     const {sticker} = this.props;
-    let animtatedStyles = [this.state.pan.getLayout(), styles.container]
+    let { pan, scale } = this.state;
+
+    let animtatedStyles = [
+      pan.getLayout(),
+      styles.container,
+      {transform: [{scale}]}
+    ]
 
 console.log('rendering sticker', this.state);
     if (this.state.x && this.state.y) {
@@ -86,7 +100,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 10,
     paddingVertical: 20,
-    zIndex: 2
+    zIndex: 2,
+    backgroundColor: 'transparent'
   },
   imageContainer: {
     flex: 1,
