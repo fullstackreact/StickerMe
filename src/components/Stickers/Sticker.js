@@ -76,7 +76,6 @@ export class Sticker extends React.Component {
       {transform: [{scale}]}
     ]
 
-console.log('rendering sticker', this.state);
     if (this.state.x && this.state.y) {
       animtatedStyles.concat({
         position: 'absolute',
@@ -100,12 +99,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 10,
     paddingVertical: 20,
-    zIndex: 2,
-    backgroundColor: 'transparent'
+    zIndex: 100,
+    backgroundColor: 'transparent',
   },
-  imageContainer: {
-    flex: 1,
-  }
 })
 
 export default Sticker;

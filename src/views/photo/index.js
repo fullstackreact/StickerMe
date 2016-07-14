@@ -109,27 +109,33 @@ export class PhotoView extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.image}>
+        <View style={styles.image}
+          onLayout={this.setDropZoneValues.bind(this)}
+          >
           {Object.keys(placedStickers)
-              .map(stickerKey => {
+              .map((stickerKey, index) => {
                 const sticker = placedStickers[stickerKey];
                 const StickerComponent = this.renderSticker(sticker, {
                   initialLocation: sticker.initialLocation
                 })
-                const StickerEle =
-                  React.createElement(StickerComponent, {
-                    key: stickerKey
-                  });
+                const key = `${stickerKey}_${index}`
+                const StickerEle = (props) => {
+                  const stickerProps = Object.assign({}, {
+                    key,
+                  }, props);
+                  return (
+                    <View key={stickerKey}
+                        style={styles.placedSticker}>
+                      {React.cloneElement(StickerComponent, stickerProps)}
+                    </View>)
+                }
 
-                return (
-                  <View><StickerEle key={stickerKey} /></View>
-                )
+                return StickerEle;
             })
           }
           <Image
-            onLayout={this.setDropZoneValues.bind(this)}
             style={styles.imageContainer}
-            source={{uri: photo.url }} />
+            source={{uri: photo.url}} />
         </View>
         <View style={styles.picker}>
           <StickerPicker
@@ -148,25 +154,28 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   imageContainer: {
-    flex: 1,
     position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
-    right: 0
+    right: 0,
+    zIndex: 0,
   },
   image: {
-    flex: 5,
-    zIndex: 1,
+    flex: 9,
+    zIndex: 1
   },
   picker: {
-    flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    zIndex: 2,
+    zIndex: 200,
   },
   sticker: {
+  },
+  placedSticker: {
+    borderWidth: 10,
+    borderColor: 'blue',
   }
 })
 

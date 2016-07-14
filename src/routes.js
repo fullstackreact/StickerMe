@@ -33,6 +33,7 @@ const toList = (root) => {
 }
 
 const withNavigation = (props, fn) => (evt) => {
+console.log('withNavigation --->', props, fn);
   const {actions} = props.scene.route;
   const {navigation} = actions;
   fn(navigation)
@@ -44,7 +45,7 @@ export const routes = toList({
       title: 'Home',
       rightComponent: function (props) {
         const {scene} = props;
-        const takePicture = withNavigation(nav => nav.push('camera.take'))
+        const takePicture = withNavigation(props, nav => nav.push('camera.take'))
         return (
           <View style={{padding: 10}}>
             <TouchableHighlight onPress={takePicture}>

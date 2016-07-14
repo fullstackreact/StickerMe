@@ -37,11 +37,11 @@ export class StickerPicker extends React.Component {
           scrollEnabled={canScroll}
           horizontal={true}>
         {stickers.map(sticker => {
-          return React.cloneElement(renderSticker(sticker), {
+          return React.cloneElement(renderSticker(sticker, {
             key: sticker.id,
-            sticker: sticker,
+            sticker,
             style: [styles.imageContainer]
-          })
+          }))
         })}
       </ScrollView>
     )
