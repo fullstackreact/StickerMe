@@ -40,7 +40,7 @@ export class Button extends React.Component {
   render() {
     const animatedStyles = [
       styles.button,
-      {backgroundColor: '#bbcc33'}
+      {backgroundColor: '#feff00'}
     ]
     return (
       <TouchableOpacity style={styles.wrapper}

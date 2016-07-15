@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingHorizontal: 10,
-    paddingVertical: 20,
+    // paddingVertical: 10,
     zIndex: 100,
     backgroundColor: 'transparent',
   },

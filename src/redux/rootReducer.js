@@ -4,7 +4,8 @@ const modules = {
   currentUser: require('./modules/currentUser'),
   navigation: require('./modules/navigation'),
   feed: require('./modules/feed'),
-  photos: require('./modules/photos')
+  photos: require('./modules/photos'),
+  userPurchases: require('./modules/userPurchases')
 }
 
 // const currentUser = require('./reducers/currentUser')

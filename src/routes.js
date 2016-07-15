@@ -33,10 +33,14 @@ const toList = (root) => {
 }
 
 const withNavigation = (props, fn) => (evt) => {
-console.log('withNavigation --->', props, fn);
   const {actions} = props.scene.route;
   const {navigation} = actions;
   fn(navigation)
+}
+
+const closeBtn = (props) => {
+  const onClose = withNavigation(props, nav => nav.pop())
+  return (<Close onPress={onClose}/>)
 }
 
 export const routes = toList({
@@ -66,6 +70,28 @@ export const routes = toList({
           Component: () => {
             const C = require('./views/photo').default;
             return <C />
+          }
+        }
+      },
+      'stickers': {
+        route: {},
+        children: {
+          'buyScreen': {
+            route: {
+              title: 'Get more',
+              rightComponent: closeBtn,
+              modal: true,
+              Component: () => {
+                const C = require('./views/stickers/buyScreen').default;
+                return <C />
+              }
+            }
+          },
+          'listing': {
+            route: {
+              title: 'My stickers',
+              rightComponent: closeBtn
+            }
           }
         }
       }

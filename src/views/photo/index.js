@@ -25,8 +25,7 @@ const stickers = stickerNames.map((name, idx) => ({
 // end replace
 
 import StickerPicker, {Sticker} from '../../components/Stickers'
-
-console.log('Sticker ->', Sticker);
+import Button from '../../components/Button'
 
 export class PhotoView extends React.Component {
   static propTypes: {
@@ -138,6 +137,11 @@ export class PhotoView extends React.Component {
             source={{uri: photo.url}} />
         </View>
         <View style={styles.picker}>
+          <View style={styles.thinMore}>
+            <Button onPress={(evt) => actions.navigation.push('welcome.stickers.buyScreen')}>
+              <Text>Get More stickers</Text>
+            </Button>
+          </View>
           <StickerPicker
             stickers={stickers}
             canScroll={canScrollStickers}
@@ -162,14 +166,21 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   image: {
-    flex: 9,
+    flex: 10,
     zIndex: 1
   },
   picker: {
+    flex: 2,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     zIndex: 200,
+  },
+  thinMore: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 0.5,
   },
   sticker: {
   },

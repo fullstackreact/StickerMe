@@ -1,6 +1,7 @@
 package com.stickerme;
 
 import com.facebook.react.ReactActivity;
+import com.idehub.Billing.InAppBillingBridgePackage;
 import com.rnfs.RNFSPackage;
 import com.lwansbrough.ReactCamera.ReactCamera;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -38,6 +39,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new InAppBillingBridgePackage(this),
             new RNFSPackage(),
             new ReactCamera(),
             new VectorIconsPackage()

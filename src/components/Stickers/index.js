@@ -52,14 +52,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    borderTopWidth: 2,
+    borderTopWidth: 10,
+    borderColor: 'transparent',
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
   },
   imageContainer: {
     flex: 1,
     paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderWidth: 10,
-    borderColor: 'blue',
+    paddingVertical: 1,
   }
 })
 
