@@ -16,7 +16,7 @@ import LoadingImage from '../../components/LoadingImage';
 
 import tableStyles from '../../styles/tableStyles'
 
-export class BuyScreen extends React.Component {
+export class BuyProduct extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -103,7 +103,7 @@ export class BuyScreen extends React.Component {
   }
 
   _rowHasChanged(oldRow, newRow) {
-console.log('_rowHasChanged ->', oldRow, newRow);
+consoldddde.log('_rowHasChanged ->', oldRow, newRow);
     return oldRow !== newRow;
   }
 
@@ -111,7 +111,7 @@ console.log('_rowHasChanged ->', oldRow, newRow);
     const {actions} = this.props;
 
     return (
-      <ScrollView style={[]}
+      <ScrollView style={[styles.container]}
           key={`row_${rowData.id}`}
           horizontal={true}>
             {rowData.products.map(product => {
@@ -136,7 +136,7 @@ console.log('_rowHasChanged ->', oldRow, newRow);
     return (
       <View style={[styles.sectionHeader, tableStyles.sectionHeader]}>
         <Text style={[styles.sectionHeaderText, tableStyles.sectionHeaderText]}>{sectionId}</Text>
-        <Button color={'#ffffff'}
+        <Button color={'#098bbc'}
                 activeOpacity={0.3}
                 style={styles.sectionHeaderBtn} onPress={this._buyStickers.bind(this)}>
           <Text>Get it</Text>
@@ -159,7 +159,7 @@ console.log('_rowHasChanged ->', oldRow, newRow);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -179,7 +179,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect(state => ({
-  products: state.products.items,
-  productErrors: state.products.errors
-}))(BuyScreen)
+export default BuyProduct

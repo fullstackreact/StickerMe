@@ -87,6 +87,17 @@ export const routes = toList({
               }
             }
           },
+          'buyProduct': {
+            route: {
+              title: 'Buy',
+              rightComponent: closeBtn,
+              modal: true,
+              Component: () => {
+                const C = require('./views/stickers/buyProduct').default;
+                return <C />
+              }
+            }
+          },
           'listing': {
             route: {
               title: 'My stickers',

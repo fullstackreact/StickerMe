@@ -1,5 +1,6 @@
 import React, {
-  Children
+  Children,
+  PropTypes as T
 } from 'react'
 
 import {
@@ -11,6 +12,12 @@ import {
 } from 'react-native'
 
 export class Button extends React.Component {
+  static propTypes = {
+    backgroundColor: T.string
+  }
+  static defaultProps = {
+    backgroundColor: '#feff00'
+  }
   constructor(props) {
     super(props);
 
@@ -40,7 +47,7 @@ export class Button extends React.Component {
   render() {
     const animatedStyles = [
       styles.button,
-      {backgroundColor: '#feff00'}
+      {backgroundColor: this.props.backgroundColor}
     ]
     return (
       <TouchableOpacity style={styles.wrapper}

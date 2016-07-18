@@ -7,7 +7,7 @@ import InAppBilling from 'react-native-billing'
 InAppBilling.open()
 .then(() => {
   console.log('start resolved');
-  InAppBilling.listProducts(['io.fullstack.StickerMe.free_first_sticker_pack'])
+  InAppBilling.listProducts(['free_first_sticker_pack'])
   .then(products => {
     console.log('products ->', products);
   })

@@ -67,27 +67,35 @@ export class Sticker extends React.Component {
   }
 
   render() {
-    const {sticker} = this.props;
-    let { pan, scale } = this.state;
+    const {sticker, canDrag} = this.props;
 
-    let animtatedStyles = [
-      pan.getLayout(),
-      styles.container,
-      {transform: [{scale}]}
-    ]
+    let animatedViewProps = {};
+    let animatedStyles = [];
 
-    if (this.state.x && this.state.y) {
-      animtatedStyles.concat({
-        position: 'absolute',
-        y: this.state.y,
-        x: this.state.x,
-      })
+    if (canDrag) {
+      let { pan, scale } = this.state;
+
+      animatedStyles = [
+        pan.getLayout(),
+        styles.container,
+        {transform: [{scale}]}
+      ]
+
+      if (this.state.x && this.state.y) {
+        animatedStyles.concat({
+          position: 'absolute',
+          y: this.state.y,
+          x: this.state.x,
+        })
+      }
+
+      animatedViewProps = Object.assign({}, this.panResponder.panHandlers);
     }
 
     return (
       <Animated.View
-          {...this.panResponder.panHandlers}
-          style={animtatedStyles}>
+          {...animatedViewProps}
+          style={animatedStyles}>
         <sticker.Component />
       </Animated.View>
     )

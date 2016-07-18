@@ -26,15 +26,15 @@
 		285398C3026E4C729C494B3C /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC0696672F6E455BBED64285 /* Zocial.ttf */; };
 		3399D0CD60214E81ACCC14E8 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58113DBF1E3048A2A9280AE4 /* libRNVectorIcons.a */; };
 		3FF969004C394510B220A440 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6542663FD1B64E68BBD4C80D /* Ionicons.ttf */; };
-		5E35CBDBCCBD4482BF40B74F /* libInAppBilling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE9D36718834857973271D3 /* libInAppBilling.a */; };
 		782E4F24A33A4EA2A400AEAB /* libFirestack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F4858DF0DD4248B59D92C6 /* libFirestack.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		89357CED342C46ED8C5167F7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0456B92F74A94A30AE38AC02 /* Entypo.ttf */; };
 		9151DCA16B9741D194817CDA /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCF08C5405A45D68191CC90 /* libRNFS.a */; };
 		9680106EFBD94E489E7A19E4 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF00BC34BE644BFE9AA46A13 /* EvilIcons.ttf */; };
 		9F2B19BB817B4D42A3212254 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F80B6BDA1804AA49F5D60EA /* libRCTCamera.a */; };
-		BB81B5FD389A489FAB43C245 /* libOAuthManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C58256E6B194CEFBB8BE820 /* libOAuthManager.a */; };
+		AD61FC3819AA4A8D91FB197B /* libOAuthManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA527AC3AA43E4945DDD6F /* libOAuthManager.a */; };
 		D367A38E4A1242D08C39920C /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37E5C9B8194B42BABF813C74 /* Foundation.ttf */; };
+		D4DBA2AFEA6A4F72BC4609A0 /* libInAppBilling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44ACACEAE8274B9C86F540FA /* libInAppBilling.a */; };
 		D99263161D2FC2EE0053DE6C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D99263151D2FC2EE0053DE6C /* GoogleService-Info.plist */; };
 		D9E9A0881D396E9C0029D4E3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E9A0871D396E9C0029D4E3 /* StoreKit.framework */; };
 		E2EBA12B09894875800C86F7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50B6C2E7DA334D11B1B84B07 /* FontAwesome.ttf */; };
@@ -147,19 +147,19 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = Firestack;
 		};
-		D9E99E901D39298E0029D4E3 /* PBXContainerItemProxy */ = {
+		D9E2F1FD1D39AAEE006552F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6479D395F8FE4123A2C47375 /* OAuthManager.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = OAuthManager;
-		};
-		D9E9A2641D39805E0029D4E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66CC8FF064D64A099A8BD46E /* InAppBilling.xcodeproj */;
+			containerPortal = 591BBE0A58814282B6CA3CA9 /* InAppBilling.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = InAppBilling;
+		};
+		D9E2F2751D39B00D006552F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAC9815E3B6346A68D4E3A30 /* OAuthManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = OAuthManager;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -188,16 +188,15 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1487ABD6F1CE40E6BD860CC6 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		18BFFE1BECDF4DBF893D6655 /* Firestack.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Firestack.xcodeproj; path = "../node_modules/react-native-firestack/ios/Firestack.xcodeproj"; sourceTree = "<group>"; };
+		2DDA527AC3AA43E4945DDD6F /* libOAuthManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libOAuthManager.a; sourceTree = "<group>"; };
 		32F8B1334C7C4228B241A6CE /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		37E5C9B8194B42BABF813C74 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		3CE9D36718834857973271D3 /* libInAppBilling.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInAppBilling.a; sourceTree = "<group>"; };
 		414B315D749A4E1BBD4A6A20 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		44ACACEAE8274B9C86F540FA /* libInAppBilling.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInAppBilling.a; sourceTree = "<group>"; };
 		50B6C2E7DA334D11B1B84B07 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		58113DBF1E3048A2A9280AE4 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
-		6479D395F8FE4123A2C47375 /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OAuthManager.xcodeproj; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; };
+		591BBE0A58814282B6CA3CA9 /* InAppBilling.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = InAppBilling.xcodeproj; path = "../node_modules/react-native-billing/ios/InAppBilling.xcodeproj"; sourceTree = "<group>"; };
 		6542663FD1B64E68BBD4C80D /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		66CC8FF064D64A099A8BD46E /* InAppBilling.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = InAppBilling.xcodeproj; path = "../node_modules/react-native-billing/ios/InAppBilling.xcodeproj"; sourceTree = "<group>"; };
-		6C58256E6B194CEFBB8BE820 /* libOAuthManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libOAuthManager.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		808CA2935FF0453E8B14CC29 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		D99263151D2FC2EE0053DE6C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D9E9A0871D396E9C0029D4E3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E6F4858DF0DD4248B59D92C6 /* libFirestack.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFirestack.a; sourceTree = "<group>"; };
+		EAC9815E3B6346A68D4E3A30 /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OAuthManager.xcodeproj; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; };
 		FC0696672F6E455BBED64285 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,8 +237,8 @@
 				9151DCA16B9741D194817CDA /* libRNFS.a in Frameworks */,
 				782E4F24A33A4EA2A400AEAB /* libFirestack.a in Frameworks */,
 				D9E9A0881D396E9C0029D4E3 /* StoreKit.framework in Frameworks */,
-				BB81B5FD389A489FAB43C245 /* libOAuthManager.a in Frameworks */,
-				5E35CBDBCCBD4482BF40B74F /* libInAppBilling.a in Frameworks */,
+				D4DBA2AFEA6A4F72BC4609A0 /* libInAppBilling.a in Frameworks */,
+				AD61FC3819AA4A8D91FB197B /* libOAuthManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,8 +366,8 @@
 				1487ABD6F1CE40E6BD860CC6 /* RCTCamera.xcodeproj */,
 				808CA2935FF0453E8B14CC29 /* RNFS.xcodeproj */,
 				18BFFE1BECDF4DBF893D6655 /* Firestack.xcodeproj */,
-				6479D395F8FE4123A2C47375 /* OAuthManager.xcodeproj */,
-				66CC8FF064D64A099A8BD46E /* InAppBilling.xcodeproj */,
+				591BBE0A58814282B6CA3CA9 /* InAppBilling.xcodeproj */,
+				EAC9815E3B6346A68D4E3A30 /* OAuthManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -435,18 +435,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D9E99E8B1D39298E0029D4E3 /* Products */ = {
+		D9E2F1F91D39AAEE006552F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9E99E911D39298E0029D4E3 /* libOAuthManager.a */,
+				D9E2F1FE1D39AAEE006552F0 /* libInAppBilling.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D9E9A2601D39805E0029D4E3 /* Products */ = {
+		D9E2F2701D39B00D006552F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9E9A2651D39805E0029D4E3 /* libInAppBilling.a */,
+				D9E2F2761D39B00D006552F0 /* libOAuthManager.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -511,7 +511,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 610;
+				LastUpgradeCheck = 720;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -545,12 +545,12 @@
 					ProjectRef = 18BFFE1BECDF4DBF893D6655 /* Firestack.xcodeproj */;
 				},
 				{
-					ProductGroup = D9E9A2601D39805E0029D4E3 /* Products */;
-					ProjectRef = 66CC8FF064D64A099A8BD46E /* InAppBilling.xcodeproj */;
+					ProductGroup = D9E2F1F91D39AAEE006552F0 /* Products */;
+					ProjectRef = 591BBE0A58814282B6CA3CA9 /* InAppBilling.xcodeproj */;
 				},
 				{
-					ProductGroup = D9E99E8B1D39298E0029D4E3 /* Products */;
-					ProjectRef = 6479D395F8FE4123A2C47375 /* OAuthManager.xcodeproj */;
+					ProductGroup = D9E2F2701D39B00D006552F0 /* Products */;
+					ProjectRef = EAC9815E3B6346A68D4E3A30 /* OAuthManager.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -712,18 +712,18 @@
 			remoteRef = D99714CC1D385BF0005E830F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D9E99E911D39298E0029D4E3 /* libOAuthManager.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libOAuthManager.a;
-			remoteRef = D9E99E901D39298E0029D4E3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D9E9A2651D39805E0029D4E3 /* libInAppBilling.a */ = {
+		D9E2F1FE1D39AAEE006552F0 /* libInAppBilling.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libInAppBilling.a;
-			remoteRef = D9E9A2641D39805E0029D4E3 /* PBXContainerItemProxy */;
+			remoteRef = D9E2F1FD1D39AAEE006552F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D9E2F2761D39B00D006552F0 /* libOAuthManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOAuthManager.a;
+			remoteRef = D9E2F2751D39B00D006552F0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -829,6 +829,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StickerMe.app/StickerMe";
 			};
@@ -846,6 +847,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StickerMe.app/StickerMe";
 			};
@@ -867,12 +869,16 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack/**",
-					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-billing/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 				);
 				INFOPLIST_FILE = StickerMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -898,12 +904,16 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack/**",
-					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-billing/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 				);
 				INFOPLIST_FILE = StickerMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -934,6 +944,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -956,8 +967,8 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack/**",
-					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-billing/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1002,8 +1013,8 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack/**",
-					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-billing/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

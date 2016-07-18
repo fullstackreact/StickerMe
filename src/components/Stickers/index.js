@@ -30,10 +30,10 @@ export class StickerPicker extends React.Component {
   }
 
   render() {
-    const {renderSticker, canScroll, stickers, isDropZone, onDrag, onDragEnd, setLocation} = this.props;
+    const {renderSticker, canScroll, stickers, isDropZone, onDrag, onDragEnd, setLocation, style} = this.props;
 
     return (
-      <ScrollView style={styles.container}
+      <ScrollView style={[styles.container, style]}
           scrollEnabled={canScroll}
           horizontal={true}>
         {stickers.map(sticker => {

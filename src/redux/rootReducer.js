@@ -5,6 +5,7 @@ const modules = {
   navigation: require('./modules/navigation'),
   feed: require('./modules/feed'),
   photos: require('./modules/photos'),
+  products: require('./modules/products'),
   userPurchases: require('./modules/userPurchases')
 }
 
