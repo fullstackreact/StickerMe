@@ -160,6 +160,7 @@ console.log('_rowHasChanged ->', oldRow, newRow);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white'
   },
   sectionHeader: {
     flexDirection: 'row',

@@ -75,6 +75,7 @@ export class PhotoView extends React.Component {
         {...otherProps}
         key={sticker.id}
         sticker={sticker}
+        canDrag={true}
         actions={actions}
         isDropZone={this.isDropZone.bind(this)}
         setLocation={this.setLocation.bind(this)}
@@ -185,8 +186,8 @@ const styles = StyleSheet.create({
   sticker: {
   },
   placedSticker: {
-    borderWidth: 10,
-    borderColor: 'blue',
+    borderWidth: 1,
+    borderColor: 'green',
   }
 })
 

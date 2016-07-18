@@ -115,6 +115,7 @@ consoldddde.log('_rowHasChanged ->', oldRow, newRow);
           key={`row_${rowData.id}`}
           horizontal={true}>
             {rowData.products.map(product => {
+console.log('product ->', product)
               return (
                 <LoadingImage
                     key={product.id}

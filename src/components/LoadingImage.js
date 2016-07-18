@@ -7,6 +7,8 @@ import {
   Image
 } from 'react-native'
 
+import colors from '../styles/colors'
+
 export class LoadingImage extends React.Component {
 
   static propTypes = {
@@ -15,7 +17,7 @@ export class LoadingImage extends React.Component {
   };
 
   static defaultProps = {
-    backgroundColor: '#444bfc'
+    backgroundColor: colors.white
   }
 
   constructor(props) {
@@ -44,17 +46,17 @@ export class LoadingImage extends React.Component {
     }).start();
   }
   render() {
-    const {key, source, loadImage, style, backgroundColor} = this.props;
+    const {source, loadImage, style, backgroundColor} = this.props;
     const width = style.width || 50;
     const height = style.height || 50;
 
     return (
       <View 
+        key={source}
         width={width} height={height}
         backgroundColor={backgroundColor}>
           <Animated.Image
             resizeMode={'contain'}
-            key={key}
             style={[
               {position: 'absolute'},
               style
@@ -63,7 +65,6 @@ export class LoadingImage extends React.Component {
             onLoad={this.onLoad.bind(this)} />
           <Animated.Image 
             resizeMode={'contain'}
-            key={key}
             style={[
               {opacity: this.state.thumbnailOpacity},
               this.props.style
