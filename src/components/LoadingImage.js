@@ -13,7 +13,7 @@ export class LoadingImage extends React.Component {
 
   static propTypes = {
     backgroundColor: T.string,
-    style: T.array
+    style: T.array,
   };
 
   static defaultProps = {

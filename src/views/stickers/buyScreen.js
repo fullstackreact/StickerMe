@@ -127,8 +127,8 @@ console.log('_rowHasChanged ->', oldRow, newRow);
     )
   }
 
-  _buyStickers() {
-    console.log('buyStickers called');
+  _buyStickers(sectionId) {
+    console.log('buyStickers called', sectionId);
   }
 
   _renderSectionHeader(data, sectionId) {
@@ -138,7 +138,8 @@ console.log('_rowHasChanged ->', oldRow, newRow);
         <Text style={[styles.sectionHeaderText, tableStyles.sectionHeaderText]}>{sectionId}</Text>
         <Button color={'#ffffff'}
                 activeOpacity={0.3}
-                style={styles.sectionHeaderBtn} onPress={this._buyStickers.bind(this)}>
+                style={styles.sectionHeaderBtn} 
+                onPress={this._buyStickers.bind(this, sectionId)}>
           <Text>Get it</Text>
         </Button>
       </View>
