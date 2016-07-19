@@ -25,6 +25,11 @@ export class PhotoCard extends React.Component {
     this.props.onPress(this.props.photo)
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('PhotoCard() componentWillReceiveProps',
+      nextProps.photo ? nextProps.photo : 'No photo key');
+  }
+
   render() {
     const {photo, actions} = this.props;
 
@@ -33,6 +38,7 @@ export class PhotoCard extends React.Component {
         <TouchableHighlight onPress={this.onPress.bind(this)}>
           <View>
             <LoadingImage
+              photo={photo}
               style={styles.base}
               imageStyle={styles.image}
               source={{uri: photo.url}}

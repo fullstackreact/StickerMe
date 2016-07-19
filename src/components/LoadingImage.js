@@ -36,12 +36,15 @@ export class LoadingImage extends React.Component {
     }
   }
 
-  componentWillMount() {
+  onLayout() {
     this.props.loadImage(this.props);
   }
 
+  componentWillMount() {
+    // this.props.loadImage(this.props);
+  }
+
   onLoad() {
-    console.log('onLoad --->', this.props.source);
     Animated.timing(this.state.thumbnailOpacity, {
       toValue: 0,
       duration: 250
@@ -53,18 +56,22 @@ export class LoadingImage extends React.Component {
   }
 
   render() {
-    const {source, loadImage, style, imageStyle, backgroundColor} = this.props;
+    const {photo, source, loadImage, style, imageStyle, backgroundColor} = this.props;
 
     return (
       <View
         key={source}
-        style={style}
+        style={[
+          {flex: 1},
+          style
+        ]}
+        onLayout={this.onLayout.bind(this)}
         backgroundColor={backgroundColor}>
           <ActivityIndicator
             animating={this.state.loading}
             style={[
               styles.centering,
-              {height: 40}
+              {height: 80}
             ]}
             size="large" />
           <Animated.Image
