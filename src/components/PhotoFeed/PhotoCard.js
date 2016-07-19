@@ -8,6 +8,8 @@ import {
   TouchableHighlight
 } from 'react-native'
 
+import LoadingImage from '../LoadingImage'
+
 export class PhotoCard extends React.Component {
   static propTypes = {
     photo: T.object,
@@ -17,7 +19,6 @@ export class PhotoCard extends React.Component {
 
   componentDidMount() {
     const {actions, photo} = this.props;
-    actions.photos.downloadPhoto(photo)
   }
 
   onPress(evt) {
@@ -25,14 +26,18 @@ export class PhotoCard extends React.Component {
   }
 
   render() {
-    const {photo} = this.props;
+    const {photo, actions} = this.props;
 
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={this.onPress.bind(this)}>
-          {photo.url ? <Image source={{uri: photo.url}}
-               style={[styles.base, {overflow: 'hidden'}]} /> :
-             <Text>Loading...</Text>}
+          <View>
+            <LoadingImage
+              style={styles.base}
+              imageStyle={styles.image}
+              source={{uri: photo.url}}
+              loadImage={() => actions.photos.downloadThumbnail(photo.fullPath, photo)} />
+          </View>
         </TouchableHighlight>
       </View>
     )
@@ -45,11 +50,14 @@ const styles = StyleSheet.create({
     // height: 90,
   },
   base: {
-    // paddingTop: 80,
-    height: 90,
     flex: 1,
-    resizeMode: 'cover',
+    height: 120,
   },
+  image: {
+    flex: 1,
+    height: 120,
+    resizeMode: 'cover'
+  }
 })
 
 export default PhotoCard;

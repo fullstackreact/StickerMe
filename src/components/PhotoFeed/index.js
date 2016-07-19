@@ -12,6 +12,7 @@ import {
   TouchableHighlight
 } from 'react-native'
 
+import tableStyles from '../../styles/tableStyles'
 import PhotoCard from './PhotoCard';
 
 export class PhotoFeed extends React.Component {
@@ -45,8 +46,10 @@ export class PhotoFeed extends React.Component {
       <View style={styles.container}>
         <ListView
           ref="listView"
+          scrollRenderAheadDistance={0}
           automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}
+          renderHeader={this._renderHeader.bind(this)}
           renderRow={this._renderRow.bind(this)}
           renderSectionHeader={this._renderSectionHeader.bind(this)}
           renderSeparator={this._renderSeparator.bind(this)} />
@@ -54,11 +57,19 @@ export class PhotoFeed extends React.Component {
     )
   }
 
+  _renderHeader() {
+    return (
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>Recent Photos</Text>
+      </View>
+    )
+  }
+
   _renderSectionHeader(data, sectionId) {
     var text;
     return (
-      <View style={styles.sectionHeader}>
-        <Text style={styles.sectionHeaderText}>{sectionId}</Text>
+      <View style={tableStyles.sectionHeader}>
+        <Text style={tableStyles.sectionHeaderText}>{sectionId}</Text>
       </View>
     );
   }
@@ -128,24 +139,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#F5FCFF',
     flexDirection: 'column'
-  },
-  row: {
-    flex: 1
-  },
-  rowSeparator: {
-  },
-  sectionHeader: {
-    backgroundColor: '#48D1CC',
-  },
-  sectionHeaderText: {
-    fontFamily: 'Avenir',
-    fontSize: 23,
-    fontWeight: '700',
-    alignSelf: 'flex-start',
-    marginTop: 0,
-    marginBottom: 0,
-    paddingLeft: 10,
-    color: '#FFFFFF'
   },
 })
 

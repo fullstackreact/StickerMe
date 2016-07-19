@@ -30,7 +30,7 @@ let downloadComponents = createDownloadComponents(types.THUMBNAIL, {
   }
 })
 
-actions.downloadThumbnail = downloadComponents.downloadAction
+actions.downloadThumbnail = downloadComponents.action
 // actions.downloadProduct = (p) => actions.download(p, p.fullPath);
 
 reducer = createReducer(Object.assign({}, reducer, {

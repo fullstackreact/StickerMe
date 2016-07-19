@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'green',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingTop: 20
   },
   row: {
     flex: 1,
@@ -17,9 +18,9 @@ const styles = StyleSheet.create({
     borderColor: 'transparent'
   },
   sectionHeader: {
-    backgroundColor: colors.white,
-    marginBottom: 10,
-    padding: 10,
+    backgroundColor: colors.blue,
+    marginVertical: 2,
+    // padding: 10,
   },
   sectionHeaderText: {
     fontFamily: 'Avenir',
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     marginBottom: 0,
     paddingLeft: 10,
-    color: colors.dark
+    color: colors.white
   },
 })
 

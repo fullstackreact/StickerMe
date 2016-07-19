@@ -115,11 +115,10 @@ consoldddde.log('_rowHasChanged ->', oldRow, newRow);
           key={`row_${rowData.id}`}
           horizontal={true}>
             {rowData.products.map(product => {
-console.log('product ->', product)
               return (
                 <LoadingImage
                     key={product.id}
-                    style={[{width: 50, height: 50}, styles.thumbnailContainer]} 
+                    style={[{width: 50, height: 50}, styles.thumbnailContainer]}
                     loadImage={() => actions.products.downloadThumbnail(product.thumbnail, product)}
                     source={{uri: product.thumbnail_url}} />
               )

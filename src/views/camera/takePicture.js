@@ -39,7 +39,7 @@ export class TakeAPhoto extends React.Component {
   }
 
   takePicture() {
-    const {actions} = this.props;
+    const {actions, currentUser} = this.props;
     const {navigation, photos} = actions;
 
     this.camera.capture()

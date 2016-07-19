@@ -6,11 +6,21 @@ import {DOWNLOAD_TYPES} from './storageHelpers';
 import {baseName} from '../../../utils/baseName';
 const GLOBAL_LIST_KEY = 'global-photos';
 const USER_LIST_KEY = 'user-photos';
-const makeUserListKey = (currentUser) => `${USER_LIST_KEY}/${currentUser.user.uid}`
+
+const defaultToObj = child => ({_key: child.key, ...child.val()})
+const defaultFindObject = (child, list) => {
+  const itemKeys = list.map(i => i._key);
+  const itemIndex = itemKeys.indexOf(payload.key);
+  let newItems = [].concat(list);
+  newItems.splice(itemIndex, 1);
+  return newItems;
+}
 
 export default (key, ref, {
   initialTypes = [],
-  userInitialState = {}
+  userInitialState = {},
+  toObject = defaultToObj,
+  findObject = defaultFindObject
 }) => {
 
   /*
@@ -25,7 +35,7 @@ export default (key, ref, {
     prefix: key,
     customTypes: {
       'status': DOWNLOAD_TYPES,
-      'firebase': ['added', 'changed', 'removed']
+      'firebase': ['value', 'added', 'changed', 'removed']
     }
   })(
     ...initialTypes,
@@ -33,6 +43,7 @@ export default (key, ref, {
     {'DOWNLOAD': { types: ['status'] }},
 
     {'ITEM': { types: ['firebase']}},
+
     'LISTENING', 'UNLISTENING'
   );
 
@@ -57,14 +68,17 @@ export default (key, ref, {
   let listenRef;
   let actions = {
     listen: () => (dispatch, getState) => {
-      const {server, currentUser} = getState();
+      const {server} = getState();
+      const listRef = typeof ref === 'string' ? ref : ref(getState());
+
       listenRef = server.database
-        .ref(ref)
+        .ref(listRef)
         .orderByChild('timestamp')
 
-      listenRef.on('child_added',   snapshot => dispatch({type: types.ITEM_ADDED, payload: snapshot.val()}))
-      listenRef.on('child_removed', snapshot => dispatch({type: types.ITEM_REMOVED, payload: snapshot.val()}))
-      listenRef.on('child_changed', snapshot => dispatch({type: types.ITEM_CHANGED, payload: snapshot.val()}))
+      // listenRef.once('value',       snapshot => dispatch({type: types.ITEM_VALUE, payload: snapshot}))
+      listenRef.on('child_added',   snapshot => dispatch({type: types.ITEM_ADDED, payload: snapshot}))
+      listenRef.on('child_removed', snapshot => dispatch({type: types.ITEM_REMOVED, payload: snapshot}))
+      listenRef.on('child_changed', snapshot => dispatch({type: types.ITEM_CHANGED, payload: snapshot}))
 
       dispatch({
         type: types.LISTENING
@@ -110,15 +124,30 @@ export default (key, ref, {
   const getItemIndexById = (itemId, state) => state.items.map(i => i.id).indexOf(itemId)
 
   const reducer = {
+    [types.ITEM_VALUE]: (state, {payload}) => {
+      let list = [];
+      payload.forEach(child => list.push(toObject(child, state)))
+      list.sort((a, b) => a.timestamp < b.timestamp)
+      return {...state, items: list}
+    },
     [types.ITEM_ADDED]: (state, {payload}) => {
-      const items = Object.assign({}, state.items, {
-        [payload.id]: payload
-      });
-      return { ...state, items}
+      const newItem = toObject(payload, state);
+      let list = state.items
+                  .concat(newItem)
+                  .sort((a, b) => a.timestamp < b.timestamp)
+
+      return { ...state, items: list}
     },
     [types.ITEM_REMOVED]: (state, {payload}) => {
-      delete(items[payload.id]);
-      return {...state, items}
+      const itemKeys = state.items.map(i => i._key);
+      const itemIndex = itemKeys.indexOf(payload.key);
+      let newItems = [].concat(state.items);
+      newItems.splice(itemIndex, 1);
+
+      let list = newItems
+                  .concat(newItem)
+                  .sort((a, b) => a.timestamp < b.timestamp)
+      return {...state, items: list}
     },
 
     [types.LISTENING]: (state) => {
@@ -139,7 +168,7 @@ export default (key, ref, {
   let initialState = Object.assign({}, {
     loading: false,
     errors: null,
-    items: {}
+    items: []
   }, userInitialState);
 
   return {initialState, reducer, actions, types}

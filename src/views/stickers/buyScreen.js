@@ -103,7 +103,6 @@ export class BuyScreen extends React.Component {
   }
 
   _rowHasChanged(oldRow, newRow) {
-console.log('_rowHasChanged ->', oldRow, newRow);
     return oldRow !== newRow;
   }
 
@@ -118,7 +117,7 @@ console.log('_rowHasChanged ->', oldRow, newRow);
               return (
                 <LoadingImage
                     key={product.id}
-                    style={[{width: 50, height: 50}, styles.thumbnailContainer]} 
+                    style={[{width: 50, height: 50}, styles.thumbnailContainer]}
                     loadImage={() => actions.products.downloadThumbnail(product.thumbnail, product)}
                     source={{uri: product.thumbnail_url}} />
               )
@@ -138,7 +137,7 @@ console.log('_rowHasChanged ->', oldRow, newRow);
         <Text style={[styles.sectionHeaderText, tableStyles.sectionHeaderText]}>{sectionId}</Text>
         <Button color={'#ffffff'}
                 activeOpacity={0.3}
-                style={styles.sectionHeaderBtn} 
+                style={styles.sectionHeaderBtn}
                 onPress={this._buyStickers.bind(this, sectionId)}>
           <Text>Get it</Text>
         </Button>
