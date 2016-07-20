@@ -20,7 +20,6 @@ export default (key, ref, {
   initialTypes = [],
   userInitialState = {},
   toObject = defaultToObj,
-  findObject = defaultFindObject
 }) => {
 
   /*

@@ -40,13 +40,9 @@ export class LoadingImage extends React.Component {
     this.props.loadImage(this.props);
   }
 
-  componentWillMount() {
-    // this.props.loadImage(this.props);
-  }
-
   onLoad() {
     Animated.timing(this.state.thumbnailOpacity, {
-      toValue: 0,
+      toValue: 1,
       duration: 250
     }).start()
     const listenerId = this.state.thumbnailOpacity.addListener(() => {
@@ -57,6 +53,7 @@ export class LoadingImage extends React.Component {
 
   render() {
     const {photo, source, loadImage, style, imageStyle, backgroundColor} = this.props;
+    const {thumbnailOpacity} = this.state;
 
     return (
       <View
@@ -71,13 +68,14 @@ export class LoadingImage extends React.Component {
             animating={this.state.loading}
             style={[
               styles.centering,
-              {height: 80}
+              {height: 80},
             ]}
             size="large" />
           <Animated.Image
             resizeMode={'contain'}
             style={[
               {position: 'absolute', top: 0, left: 0, width: width, height: height},
+              {opacity: thumbnailOpacity},
               imageStyle
             ]}
             source={source}

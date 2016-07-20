@@ -56,13 +56,14 @@ export class PhotoView extends React.Component {
     })
   }
 
-  setDropZoneValues(event){      //Step 1
+  setDropZoneValues(event) {
     this.setState({
       dropZoneValues : event.nativeEvent.layout
     });
   }
 
   isDropZone(gesture) {
+    return true;
     const dz = this.state.dropZoneValues;
     return gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height;
   }
@@ -159,16 +160,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   imageContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 0,
+    flex: 1,
+    // position: 'absolute',
+    // top: 0,
+    // bottom: 0,
+    // left: 0,
+    // right: 0,
+    // zIndex: 0,
   },
   image: {
     flex: 10,
-    zIndex: 1
+    zIndex: 0
   },
   picker: {
     flex: 2,

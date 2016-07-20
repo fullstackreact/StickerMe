@@ -117,7 +117,7 @@ export const createReducers = (keyPrefix, KEYS, options={}) => {
   }
 }
 
-export const _createComponents = (actionPrefix, keyPrefix, opts={}) => {
+const _createComponents = (actionPrefix, keyPrefix, opts={}) => {
   const sep = opts.separator || '-';
   const KEYS = STORAGE_TYPES
     .reduce((sum, key) => ({

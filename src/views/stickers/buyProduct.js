@@ -110,15 +110,19 @@ consoldddde.log('_rowHasChanged ->', oldRow, newRow);
   _renderRow(rowData) {
     const {actions} = this.props;
 
+console.log('_renderRow ->', this.props);
     return (
-      <ScrollView style={[styles.container]}
+      <ScrollView style={[
+          styles.container
+        ]}
           key={`row_${rowData.id}`}
           horizontal={true}>
             {rowData.products.map(product => {
+console.log('product _______________________', product);
               return (
                 <LoadingImage
                     key={product.id}
-                    style={[{width: 50, height: 50}, styles.thumbnailContainer]}
+                    style={[{width: 20, height: 20}, styles.thumbnailContainer]}
                     loadImage={() => actions.products.downloadThumbnail(product.thumbnail, product)}
                     source={{uri: product.thumbnail_url}} />
               )
@@ -173,8 +177,8 @@ const styles = StyleSheet.create({
   },
   thumbnailContainer: {
     flex: 1,
-    borderWidth: 3,
-    borderColor: 'transparent',
+    // borderWidth: 3,
+    // borderColor: 'transparent',
     padding: 10,
   }
 })

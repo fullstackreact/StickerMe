@@ -25,11 +25,6 @@ export class PhotoCard extends React.Component {
     this.props.onPress(this.props.photo)
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('PhotoCard() componentWillReceiveProps',
-      nextProps.photo ? nextProps.photo : 'No photo key');
-  }
-
   render() {
     const {photo, actions} = this.props;
 

@@ -34,6 +34,7 @@ export class StickerPicker extends React.Component {
 
     return (
       <ScrollView style={[styles.container, style]}
+          contentContainerStyle={style}
           scrollEnabled={canScroll}
           horizontal={true}>
         {stickers.map(sticker => {

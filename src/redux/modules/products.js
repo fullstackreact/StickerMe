@@ -13,20 +13,31 @@ let {types, reducer, actions, initialState} = createFirebaseModule('product', 'p
 });
 
 const indexOfProductById = (itemId, list) => list.map(i => i.id).indexOf(itemId)
-let downloadComponents = createDownloadComponents(types.THUMBNAIL, {
+let downloadComponents = createDownloadComponents(FIREBASE_KEY, {
   downloadKey: 'thumbnail_url',
   set: (state, payload) => {
-    let newItems = Object.assign({}, state.items);
-    if (payload.productId) {
-      const product = state.items[payload.productId];
+    let packageList = [].concat(state.items);
+    const packageListKeys = packageList.map(p => p.id)
 
-      let newProducts = [].concat(product.products);
-      const idx = indexOfProductById(payload.id, newProducts);
-      newProducts[idx] = payload;
-      product.products = newProducts;
-      newItems[payload.productId] = product;
+    if (payload.productId) {
+      const packageIdx = packageListKeys.indexOf(payload.productId);
+      const pkg = packageList[packageIdx]
+
+      let products = pkg.products;
+      const productsList = products.map(p => p.id);
+      const productIdx = productsList.indexOf(payload.id);
+      const product = products[productIdx];
+
+      const newProduct = Object.assign({}, product, payload);
+      productsList.splice(productIdx, 1, newProduct);
+
+      pkg.products = products;
+      packageList.splice(packageIdx, 1, pkg);
+
+console.log('packageList ->', newProduct);
     }
-    return newItems;
+
+    return packageList;
   }
 })
 
